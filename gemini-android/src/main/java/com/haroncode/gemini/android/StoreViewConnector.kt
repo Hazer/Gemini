@@ -1,6 +1,6 @@
 package com.haroncode.gemini.android
 
-import androidx.lifecycle.LifecycleOwner
+import androidx.savedstate.SavedStateRegistryOwner
 import com.haroncode.gemini.android.lifecycle.StoreLifecycleEventObserver
 import com.haroncode.gemini.android.strategies.StartStopStrategy
 import com.haroncode.gemini.connection.ConnectionRule
@@ -8,9 +8,9 @@ import com.haroncode.gemini.connector.BaseStoreConnector
 
 object StoreViewConnector {
 
-    fun <T : LifecycleOwner> withFactory(factory: ConnectionRule.Factory<T>) = ConnectionProcessor(factory)
+    fun <T : SavedStateRegistryOwner> withFactory(factory: ConnectionRule.Factory<T>) = ConnectionProcessor(factory)
 
-    class ConnectionProcessor<T : LifecycleOwner>(private val factory: ConnectionRule.Factory<T>) {
+    class ConnectionProcessor<T : SavedStateRegistryOwner>(private val factory: ConnectionRule.Factory<T>) {
 
         private var lifecycleStrategy: LifecycleStrategy = StartStopStrategy
 
